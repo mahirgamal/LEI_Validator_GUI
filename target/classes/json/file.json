@@ -1,0 +1,184 @@
+{
+	"$schema": "https://json-schema.org/draft/2019-09/schema",
+	"type": "object",
+	"title": "Painting",
+	"description": "event",
+	"additionalProperties": false,
+	"required": [
+		"from",
+		"mesaage",
+		"DateTime"
+	],
+	"properties": {
+		"from": {
+			"type": "string",
+			"description": "from where this mesaage comes?"
+		},
+		"mesaage": {
+			"$ref": "#/definitions/eventType",
+			"description": "message content"
+		},
+		"DateTime": {
+			"type": "string",
+			"format": "date-time",
+			"description": "date and time of publishing"
+		}
+	},
+	"definitions": {
+		"eventType": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": [
+				"event",
+				"PIC-to",
+				"rfid",
+				"session"
+			],
+			"properties": {
+				"event": {
+					"type": "string",
+					"enum": [
+						"transfer",
+						"init"
+					]
+				},
+				"PIC-to": {
+					"$ref": "#/definitions/owner",
+					"description": "farm to"
+				},
+				"PIC-from": {
+					"$ref": "#/definitions/owner",
+					"description": "farm from"
+				},
+				"rfid": {
+					"$ref": "#/definitions/animalID",
+					"description": "rfid"
+				},
+				"session": {
+					"$ref": "#/definitions/sessionType",
+					"description": "session details"
+				}
+			}
+		},
+		"sessionType": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": [
+				"sessionID",
+				"totalInSession",
+				"sessionNo"
+			],
+			"properties": {
+				"sessionID": {
+					"type": "string",
+					"description": "random number"
+				},
+				"totalInSession": {
+					"type": "integer",
+					"minimum": 0,
+					"description": "total of rfid per pic"
+				},
+				"sessionNo": {
+					"type": "integer",
+					"minimum": 1,
+					"description": "number of rfid per pic"
+				}
+			}
+		},
+		"animalID": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": [
+				"RFID"
+			],
+			"properties": {
+				"RFID": {
+					"type": "string",
+					"description": "rfid",
+					"maxLength": 16,
+					"minLength": 16
+				},
+				"NLISID": {
+					"type": "string",
+					"description": "nlis id"
+				},
+				"VID": {
+					"type": "string",
+					"description": "visual id"
+				},
+				"cattle_type": {
+					"type": "string",
+					"enum": [
+						"Cow",
+						"Sheep"
+					],
+					"description": "type of cattle"
+				}
+			}
+		},
+		"owner": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": [
+				"PIC"
+			],
+			"properties": {
+				"PIC": {
+					"type": "string",
+					"description": "pic code",
+					"maxLength": 8,
+					"minLength": 8
+				},
+				"address": {
+					"$ref": "#/definitions/address",
+					"description": "address details"
+				},
+				"name": {
+					"type": "string",
+					"description": "owner's name"
+					
+				},
+				"email": {
+					"type": "string",
+					"format": "email",
+					"description": "owner's email"
+				}
+			}
+		},
+		"address": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"number": {
+					"type": "string",
+					"description": "street number"
+				},
+				"road": {
+					"type": "string",
+					"description": "street name"
+				},
+				"suburb": {
+					"type": "string",
+					"description": "suburb"
+				},
+				"state": {
+					"type": "string",
+					"enum": [
+						"QLD",
+						"NSW",
+						"WA",
+						"NT",
+						"VIC",
+						"TAS",
+						"ACT"
+					],
+					"description": "state"
+				},
+				"country": {
+					"type": "string",
+					"description": "country"
+				}
+			}
+		}
+	}
+}

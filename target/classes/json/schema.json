@@ -1,0 +1,64 @@
+{  
+    "$schema": "https://json-schema.org/draft/2019-09/schema",  
+    "$id+": "http://my-paintings-api.com/schemas/painting-schema.json",  
+    "type": "object",  
+    "title": "Painting",  
+    "description": "Painting information",  
+    "additionalProperties": true,  
+    "required": ["from", "event", "DateTime", "RFID","PIC-to"],  
+    "properties": {  
+        "from": {  
+            "type": "string",  
+            "description": "publisher"  
+        },
+        "event": {  
+            "type": "array",  
+            "items": { "$ref": "#/$defs/events" },
+            "description": "event type" 
+            
+        },
+        "DateTime":{
+             "type": "string",
+              "description": "date and time of publishing" 
+        },
+  
+        "RFID": {   
+            "type": "string",  
+            "maxLength": 16,
+            "minLength": 16,
+            "description": "Name of the artist"  
+        },  
+
+        "PIC-to":{
+             "type": "string",
+              "description": "pic code to" 
+        },
+
+        "PIC-from":{
+             "type": ["string","null"],
+              "description": "pic code from" 
+        },
+
+        "sessionID": {  
+            "type": "string",
+              "description": "random number"  
+        },
+
+        "totalInSession": {  
+            "type": "number",
+              "description": "total of rfid per pic"  
+        },
+
+        "sessionNo": {  
+            "type": "number",
+              "description": "number of rfid per pic"  
+        }
+
+    },  
+    "$defs": {  
+        "events": {  
+            "type": "string",  
+            "enum": ["transfer", "init"]  
+        }  
+    }  
+}  

@@ -1,0 +1,40 @@
+{
+  "from": "nlis",
+  "mesaage": {
+    "event": "transfer",
+    "PIC-to": {
+      "PIC": "nsw12345"
+    },
+    "rfid": {
+      "RFID": "0123456789abcdef"
+    },
+    "session": {
+      "sessionID": "a1",
+      "totalInSession": 5,
+      "sessionNo": 2
+    },
+    "PIC-from": {
+      "PIC": "wa123456"
+    }
+  },
+  "DateTime": "1974-02-18T13:00:00.0Z"
+}
+
+{
+  "from": "nlis",
+  "mesaage": {
+    "event": "init",
+    "PIC-to": {
+      "PIC": "qld12345"
+    },
+    "rfid": {
+      "RFID": "0123456789abcdef"
+    },
+    "session": {
+      "sessionID": "cc1",
+      "totalInSession": 20,
+      "sessionNo": 17
+    }
+  },
+  "DateTime": "2005-02-18T13:00:00.0Z"
+}
